@@ -1,7 +1,8 @@
 RevELO
 ======
+Author: Rishi Ghosh 
 
-A LiveCode implementation of the ELO Player Rating system
+A LiveCode implementation of the ELO Player Rating system. The single function below handles all aspects of calculating the new ELO ratings for both players.
 
 
 
