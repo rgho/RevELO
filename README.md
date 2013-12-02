@@ -5,8 +5,6 @@ Author: Rishi Ghosh
 A LiveCode implementation of the ELO Player Rating system. The single function below handles all aspects of calculating the new ELO ratings for both players.
 
 
-
-
 newRatings [function]
 -------------
 +   Description: Returns an array with keys "Player1" and "Player2" holding corresponding new ELO ratings.
