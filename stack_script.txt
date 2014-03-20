@@ -1,0 +1,46 @@
+function newRatings pPlayer1Rating pPlayer2Rating pKVal pResult
+   -- RESULT HANDLING
+   put pResult into tResultA
+   put (1 - pResult) into tResultB
+   
+   -- VALIDATION
+   put pPlayer1Rating into tRatingA
+   put pPlayer2Rating into tRatingB
+   
+   
+   -- CALUCATE EXPECTED RESULT
+   put 1/(1+10^((tRatingB-tRatingA)/400)) into tChancesA
+   put 1/(1+10^((tRatingA-tRatingB)/400)) into tChancesB
+   
+   
+   -- CALCULATE NEW RATINGS
+   put tRatingA + (pKVal*(tResultA - tChancesA)) into tNewRatingA
+   put tRatingB + (pKVal*(tResultB - tChancesB)) into tNewRatingB
+   
+   -- PUT INTO AN ARRAY
+    put the round of tNewRatingA into tNewRatingsA["Player1"]  
+    put the round of tNewRatingB into tNewRatingsA["Player2"]
+   
+   return tNewRatingsA
+end newRatings
+
+command newGame pResult
+   -- SETUP A KVAL
+   put 30 into tKVal
+   
+   -- GET OLD RATINGS
+   put fld "p1old" into tPlayerA
+   put fld "p2old" into tPlayerB
+   
+   -- GET NEW RATINGS
+   put newRatings(tPlayerA, tPlayerB, tKVal, pResult) into tNewA
+   
+   --FILL FLDS
+   put tNewA["Player1"] into fld "p1New"
+   put tNewA["Player2"] into fld "p2New"
+   
+   put tPlayerA into fld "p1Old"
+   put tPlayerB into fld "p2Old"
+   
+end newGame
+   
